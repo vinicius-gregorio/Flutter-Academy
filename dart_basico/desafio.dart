@@ -26,4 +26,26 @@ void main(List<String> args) {
   getNumberOfPatientsWithDesignedAge(20);
 
   // Agrupar os pacientes por familia(considerar o sobrenome) apresentar por familia.
+
+  List<String> lastNames = [];
+  Map<String, List<String>> patientsFilteredByLastName = {};
+
+  void agroupPatientsByFamilyName() {
+    for (String patient in patients) {
+      var fullName = patient.split('|');
+      var familyName = fullName[0].split(' ');
+      String lastName = familyName[1];
+
+      if (!lastNames.contains(lastName)) {
+        lastNames.add(lastName);
+
+        patientsFilteredByLastName[lastName] = [patient];
+      } else {
+        patientsFilteredByLastName[lastName].add(patient);
+      }
+      print(patientsFilteredByLastName);
+    }
+  }
+
+  agroupPatientsByFamilyName();
 }
